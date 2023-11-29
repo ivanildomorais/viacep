@@ -1,51 +1,18 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./css/style.css">
-    <title>Consulta de CEP em Js</title>
+  <meta charset="UTF-8">
+  <title>Busca de CEP</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <h1>CONSULTA DE CEP</h1>
-    <label>Digite o CEP: </label>
-    <div class="digitar">
-        <input type="text" id="cep">
-    <br> 
-    </div>
-    <button onclick="consultaEndereco()">BUSCAR</button>
-    <div id="resultado">
-        <p>Valide seu Endereço:</p>
-    </div>
+  <h1>Busca de CEP</h1>
+  <form id="cepForm">
+    <input type="text" id="cepInput" placeholder="Digite o CEP">
+    <button type="submit">Buscar</button>
+  </form>
+  <div id="result"></div>
 
-    <script>
-        function consultaEndereco(){
-           let cep = document.querySelector('#cep').value;
-
-           if(cep.length !== 8){
-            alert('CEP Inválido')
-            return;
-           }
-            let url = `https://viacep.com.br/ws/${cep}/json`;
-
-            fetch(url).then(function(response){
-                response.json().then(function(data){
-                    console.log(data)
-                    aparecerEndereco(data);
-
-                })
-
-            });
-        }
-
-        function aparecerEndereco(mostrar){
-          let resultado = document.querySelector('#resultado');
-          
-          resultado.innerHTML = `<p>Endereço: ${mostrar.logradouro}</p>
-                                 <p>Complemento: ${mostrar.complemento}</p>
-                                 <p>Bairro: ${mostrar.bairro}</p>
-                                 <p>Cidade: ${mostrar.localidade} - ${mostrar.uf}</p>`
-        }
-    </script>
+  <script src="script.js"></script>
 </body>
 </html>
